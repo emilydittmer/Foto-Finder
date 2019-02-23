@@ -1,0 +1,117 @@
+body {
+  background-color: #C2B2B4;
+  font-family: "Open Sans", sans-serif;
+}
+
+header {
+  background-color: #3E2A35;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+h1 {
+  color: #fff;
+  font-weight: 800;
+  font-size: 3rem;
+  margin: 0.67em 1.5rem;
+}
+
+.header-title {
+  display: flex;
+  letter-spacing: .25rem;
+}
+
+#foto-finder-logo {
+  height: 2rem;
+  margin-bottom: .25rem;
+  margin-right: .25rem;
+  margin-top: 1.25rem;
+}
+.search {
+  border-radius: 5px;
+  border: solid 2px #C2B2B4;
+  height: 35px;
+  width: 22rem;
+}
+
+#search-field {
+  margin: auto 0;
+  padding: 0 0 0 7px;
+}
+
+.search:focus {
+  outline-color: #C2B2B4;
+}
+
+#search-btn {
+  background-color: #C2B2B4;
+  color: #fff;
+  cursor: pointer;
+  width: 39px;
+  margin-right: 1.5rem;
+}
+
+.photo-input {
+  background-color: #3E2A35;
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+}
+
+.photo-input-form,
+.buttons {
+  grid-column-start: 2;
+}
+
+.choose-file-btn {
+ height: 0.1px;
+ opacity: 0;
+ overflow: hidden;
+ position: absolute;
+ width: 0.1px;
+ z-index: -1;
+}
+
+.choose-file-btn + label {
+  background-color: #5B4447;
+  color: #fff;
+  height: 2.5rem;
+  margin-top: 2rem;
+  border: none;
+  grid-column-start: 2;
+  text-align: center;
+}
+
+label {
+  padding-top: 1.25rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+#photo-title,
+#photo-caption {
+  color: #C2B2B4;
+  font-weight: 400;
+  margin-bottom: .5rem;
+  font-size: 1.25rem;
+}
+
+#title-input,
+#caption-input {
+  height: 2.5rem;
+  resize: none;
+}
+
+.btn {
+  background-color: #5B4447;
+  color: #fff;
+  height: 2.5rem;
+  margin-top: 2rem;
+  border: none;
+  width: 42%;
+  margin-bottom: 2rem;
+}
+

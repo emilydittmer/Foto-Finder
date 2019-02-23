@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'/>
+    <title>Foto Finder</title>
+    <link rel="stylesheet" type="text/css" href="normalize.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="viewport" content="width= device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header>
+      <div class="header-title">
+        <h1>FOTO<span><img id="foto-finder-logo" src="images/foto-finder-logo.svg" alt="foto finder logo"/><span>FINDER</h1>
+      </div>
+      <form id="search-field">
+        <input type="search" id="search" class="search" placeholder="Search">
+        <button id="search-btn" class="search"><i class="fas fa-search"></i></button>
+      </form>
+    </header>
+    <section class="photo-input">
+      <h2 class="photo-input-form" id="photo-title">Title</h2>
+      <textarea rows="2" cols="50" class="photo-input-form"id="title-input" class="photo-input"></textarea>
+      <h2 class="photo-input-form" id="photo-caption">Caption</h2>
+      <textarea rows="2" cols="50" class="photo-input-form" id="caption-input" class="idea-inputs"></textarea>
+      <input class="choose-file-btn" id="select" type="file"></input>
+      <label for="select">Choose File</label>
+      <div class="buttons">
+        <button class="btn" id="view-favorite">View <span class="num-favs"></span> Favorites</button>
+        <button class="btn" id="add-to-album">Add to Album</button>
+      </div>
+    </section>
+    <section class="photos">
+    </section>
+  </body>
+  <script type="text/javascript" src="photos.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+</html>
