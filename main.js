@@ -14,6 +14,7 @@ var reader = new FileReader();
 //Event Listeners//
 window.addEventListener('load', appendPhotos(imagesArr));
 addToAlbum.addEventListener('click', loadImg);
+photoGallery.addEventListener('focusout', saveChanges);
 
 //Functions//
 function appendPhotos(array) {
@@ -27,7 +28,6 @@ function appendPhotos(array) {
 
 function loadImg(e) {
   e.preventDefault();
-  // console.log(photoInput.files[0])
   if (photoInput.files[0]) {
     reader.readAsDataURL(photoInput.files[0]); 
     reader.onload = addPhoto;
@@ -43,14 +43,35 @@ function addPhoto(e) {
 
 function displayPhoto(photoObj) {
     var photoCard =  
-      `<article class="idea-box" data-id="${photoObj.id}">
-          <h3 class="idea-box-title" contenteditable="true">${photoObj.title}</h3>
-          <img src=${photoObj.file} />
-          <h3 class="idea-box-body" contenteditable="true">${photoObj.caption}</h4>
+      `<article class="photo-box" data-id="${photoObj.id}">
+          <h3 class="photo-box-title" contenteditable="true">${photoObj.title}</h3>
+          <img id="photo" src=${photoObj.file} />
+          <h3 class="photo-box-caption" contenteditable="true">${photoObj.caption}</h4>
         <div class="btn-section">
-          <input type="image" src="images/delete.svg" class="buttons" id="delete" alt="Delete">
-          <input type="image" src="images/favorite.svg" class="buttons" id="favorite" alt="Favorite">
+          <input type="image" src="images/delete.svg" class="card-buttons" id="delete" alt="Delete">
+          <input type="image" src="images/favorite.svg" class="card-buttons" id="favorite" alt="Favorite">
         </div>
       </article>`
     photoGallery.insertAdjacentHTML('afterbegin', photoCard);
+}
+
+function saveOnReturn(e){
+  if (event.keyCode === 13){
+    e.preventDefault();
+    saveChanges(e);
+    e.target.blur();
+  }
+}
+
+function saveChanges(e){
+  var card = e.target.closest('.photo-box');
+  var cardId = parseInt(card.dataset.id);
+  var photoTitle = card.firstChild.nextSibling;
+  var editTitle = photoTitle.innerText;
+  var photoCaption = card.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
+  var editCaption = photoCaption.innerText;
+  var neededPhoto = imagesArr.find(function(photo) {
+    return photo.id === cardId;
+  });
+    neededPhoto.updatePhoto(editTitle, editCaption);
 }
