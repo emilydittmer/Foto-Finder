@@ -15,6 +15,16 @@ var reader = new FileReader();
 window.addEventListener('load', appendPhotos(imagesArr));
 addToAlbum.addEventListener('click', loadImg);
 photoGallery.addEventListener('focusout', saveChanges);
+photoGallery.addEventListener('click', clickHandler);
+
+function clickHandler(e) {
+  if(e.target.id === 'delete') {
+    deletePhoto(e);
+  }
+  else if(e.target.id === 'favorite') {
+    addFavorite(e);
+  }
+}
 
 //Functions//
 function appendPhotos(array) {
@@ -55,13 +65,13 @@ function displayPhoto(photoObj) {
     photoGallery.insertAdjacentHTML('afterbegin', photoCard);
 }
 
-function saveOnReturn(e){
-  if (event.keyCode === 13){
-    e.preventDefault();
-    saveChanges(e);
-    e.target.blur();
-  }
-}
+// function saveOnReturn(e){
+//   if (event.keyCode === 13){
+//     e.preventDefault();
+//     saveChanges(e);
+//     e.target.blur();
+//   }
+// }
 
 function saveChanges(e){
   var card = e.target.closest('.photo-box');
@@ -70,8 +80,26 @@ function saveChanges(e){
   var editTitle = photoTitle.innerText;
   var photoCaption = card.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
   var editCaption = photoCaption.innerText;
-  var neededPhoto = imagesArr.find(function(photo) {
+  var neededPhoto = findPhoto(cardId);
+  neededPhoto.updatePhoto(editTitle, editCaption);
+}
+
+function deletePhoto(e) {
+  var card = e.target.closest('.photo-box');
+  var cardId = parseInt(card.dataset.id);
+  card.remove();
+  var neededPhoto = findPhoto(cardId);
+  neededPhoto.deleteFromStorage();
+}
+
+function findPhoto(cardId) {
+  return imagesArr.find(function(photo) {
     return photo.id === cardId;
   });
-    neededPhoto.updatePhoto(editTitle, editCaption);
 }
+
+function addFavorite(e){
+  var card = e.target.closest('.photo-box');
+  var cardId = parseInt(card.dataset.id);
+}
+

@@ -13,7 +13,9 @@ class Photo {
   }
 
   deleteFromStorage(){
-
+    var index = imagesArr.indexOf(this);
+    imagesArr.splice(index, 1);
+    this.saveToStorage(imagesArr);
   }
 
   updatePhoto(editTitle, editCaption){
