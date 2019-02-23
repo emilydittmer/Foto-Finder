@@ -115,3 +115,30 @@ label {
   margin-bottom: 2rem;
 }
 
+.photos {
+  display: flex;
+  flex-wrap: wrap;
+ }
+
+.photo-box {
+  border: ridge #b1a99a 1px;
+  box-sizing: border-box;
+  margin: 15px;
+  min-width: 15%;
+  width: 20%;
+  height: 200px;
+}
+
+#photo {
+  width: 100%;
+  height: 100%;
+}
+
+.btn-section{
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-buttons {
+  height: 2em;
+}

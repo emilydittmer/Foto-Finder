@@ -4,6 +4,7 @@ class Photo {
     this.caption = caption;
     this.id = id;
     this.file = file;
+    this.favorite = false;
   }
 
   saveToStorage(){
@@ -15,7 +16,9 @@ class Photo {
 
   }
 
-  updatePhoto(){
-
+  updatePhoto(editTitle, editCaption){
+    this.title = editTitle;
+    this.caption = editCaption;
+    this.saveToStorage();
   }
 }
