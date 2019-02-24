@@ -16,7 +16,8 @@ window.addEventListener('load', appendPhotos(imagesArr));
 addToAlbum.addEventListener('click', loadImg);
 photoGallery.addEventListener('focusout', saveChanges);
 photoGallery.addEventListener('click', clickHandler);
-searchInput.addEventListener('input', searchPhotos)
+searchInput.addEventListener('input', searchPhotos);
+photoGallery.addEventListener('keydown', saveOnReturn);
 
 function clickHandler(e) {
   if(e.target.id === 'delete') {
@@ -35,6 +36,7 @@ function appendPhotos(array) {
     imagesArr.push(newPhoto);
     displayPhoto(newPhoto);
   });
+  clearPhotoFields();
 }
 
 function loadImg(e) {
@@ -55,9 +57,9 @@ function addPhoto(e) {
 function displayPhoto(photoObj) {
     var photoCard =  
       `<article class="photo-box" data-id="${photoObj.id}">
-          <h3 class="photo-box-title" contenteditable="true">${photoObj.title}</h3>
+          <h3 class="photo-box-title" contenteditable="true" maxlength="115">${photoObj.title}</h3>
           <img id="photo" src=${photoObj.file} />
-          <h3 class="photo-box-caption" contenteditable="true">${photoObj.caption}</h4>
+          <h3 class="photo-box-caption" contenteditable="true" maxlength="115">${photoObj.caption}</h4>
         <div class="btn-section">
           <input type="image" src="images/delete.svg" class="card-buttons" id="delete" alt="Delete">
           <input type="image" src="images/delete-active.svg" class="card-buttons" id="delete-active" alt="Delete">
@@ -67,13 +69,18 @@ function displayPhoto(photoObj) {
     photoGallery.insertAdjacentHTML('afterbegin', photoCard);
 }
 
-// function saveOnReturn(e){
-//   if (event.keyCode === 13){
-//     e.preventDefault();
-//     saveChanges(e);
-//     e.target.blur();
-//   }
-// }
+function clearPhotoFields(){
+  title.value = '';
+  caption.value = '';
+}
+
+function saveOnReturn(e){
+  if (event.keyCode === 13){
+    e.preventDefault();
+    saveChanges(e);
+    e.target.blur();
+  }
+}
 
 function saveChanges(e){
   var card = e.target.closest('.photo-box');
@@ -103,8 +110,8 @@ function findPhoto(cardId) {
 function addFavorite(e){
   var card = e.target.closest('.photo-box');
   var cardId = parseInt(card.dataset.id);
-  //click
-  //change this.favorite = true;
+  photo.favorite = true;
+  console.log(photo);
   //change favorite image to active(add/remove in CSS);
   //quality counter
   //updates innerText to favorite button
