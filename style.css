@@ -118,6 +118,7 @@ label {
 .photos {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
  }
 
 .photo-box {
@@ -130,6 +131,7 @@ label {
   font-weight: 400;
   height: max-content;
   height: -moz-available;
+  min-width: 15em;
 }
 
 #photo {
@@ -141,10 +143,51 @@ label {
 /*  display: flex;
   justify-content: space-between;*/
   background-color: #5B4447;
+  padding-top: 1em;
 }
 
 .card-buttons {
   height: 2em;
+  padding-bottom: .5em;
 }
 
+.photo-box-title,
+.photo-box-caption {
+  margin: 1em;
+  text-align: justify;
+}
 
+@media only screen and (max-width: 876px) {
+
+  header {
+    flex-wrap: wrap;
+  }
+
+  .header-title {
+    margin: auto;
+  }
+
+  .photo-input {
+    grid-template-columns: 10% 80% 10%;
+  }
+
+}
+
+@media only screen and (max-width: 445px) {
+
+  .header-title {
+    height: 3em;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  #view-favorite {
+    margin-bottom: 0;
+  }
+}
