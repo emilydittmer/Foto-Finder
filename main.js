@@ -16,6 +16,7 @@ window.addEventListener('load', appendPhotos(imagesArr));
 addToAlbum.addEventListener('click', loadImg);
 photoGallery.addEventListener('focusout', saveChanges);
 photoGallery.addEventListener('click', clickHandler);
+searchInput.addEventListener('input', searchPhotos)
 
 function clickHandler(e) {
   if(e.target.id === 'delete') {
@@ -59,6 +60,7 @@ function displayPhoto(photoObj) {
           <h3 class="photo-box-caption" contenteditable="true">${photoObj.caption}</h4>
         <div class="btn-section">
           <input type="image" src="images/delete.svg" class="card-buttons" id="delete" alt="Delete">
+          <input type="image" src="images/delete-active.svg" class="card-buttons" id="delete-active" alt="Delete">
           <input type="image" src="images/favorite.svg" class="card-buttons" id="favorite" alt="Favorite">
         </div>
       </article>`
@@ -101,5 +103,31 @@ function findPhoto(cardId) {
 function addFavorite(e){
   var card = e.target.closest('.photo-box');
   var cardId = parseInt(card.dataset.id);
+  //click
+  //change this.favorite = true;
+  //change favorite image to active(add/remove in CSS);
+  //quality counter
+  //updates innerText to favorite button
+  //
+}
+
+function removePhotos() {
+  photoGallery.innerHTML = '';
+} 
+
+function searchPhotos(){
+  removePhotos();
+  var newSearch = searchInput.value;
+  var searchValue = newSearch.toLowerCase();
+  var searchPhotos = imagesArr.filter(function(photo){
+    return photo.title.toLowerCase().includes(searchValue) || photo.caption.toLowerCase().includes(searchValue);
+  });
+  searchPhotos.forEach(function(element) {
+    displayPhoto(element);
+  });
+}
+
+function clearSearchField(){
+  searchInput.value = '';
 }
 
