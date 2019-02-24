@@ -21,9 +21,9 @@
     </header>
     <section class="photo-input">
       <h2 class="photo-input-form" id="photo-title">Title</h2>
-      <textarea rows="2" cols="50" class="photo-input-form"id="title-input" class="photo-input"></textarea>
+      <textarea rows="2" cols="50" class="photo-input-form"id="title-input" class="photo-input" maxlength="50"></textarea>
       <h2 class="photo-input-form" id="photo-caption">Caption</h2>
-      <textarea rows="2" cols="50" class="photo-input-form" id="caption-input" class="idea-inputs"></textarea>
+      <textarea rows="2" cols="50" class="photo-input-form" id="caption-input" class="idea-inputs" maxlength="50"></textarea>
       <input class="choose-file-btn" id="select" type="file" accept="image/*"></input>
       <label for="select">Choose File</label>
       <div class="buttons">
@@ -32,6 +32,10 @@
       </div>
     </section>
     <section class="photos">
+    </section>
+    <section class="msg">
+      <button id="add-photo">Please Add a Photo</button>
+      <button class="show-more-btn" id="show-more">Show More...</button>
     </section>
   </body>
   <script type="text/javascript" src="photos.js"></script>

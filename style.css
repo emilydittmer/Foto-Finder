@@ -140,8 +140,8 @@ label {
 }
 
 .btn-section{
-/*  display: flex;
-  justify-content: space-between;*/
+  display: flex;
+  justify-content: space-between;
   background-color: #5B4447;
   padding-top: 1em;
 }
@@ -151,10 +151,38 @@ label {
   padding-bottom: .5em;
 }
 
+#add-photo,
+#show-more {
+  background-color: #5B4447;
+  color: #fff;
+  height: 2.5rem;
+  margin-top: 2rem;
+  border: none;
+  text-align: center;
+  grid-column-start: 2;
+  margin-bottom: 2em;
+}
+
+
 .photo-box-title,
 .photo-box-caption {
   margin: 1em;
   text-align: justify;
+}
+
+.msg {
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+}
+
+.add-photo,
+.show-more-btn,
+.hidden-photo {
+  display: none;
+}
+
+.show-more-btn {
+  padding-bottom: 5em;
 }
 
 @media only screen and (max-width: 876px) {
@@ -167,7 +195,8 @@ label {
     margin: auto;
   }
 
-  .photo-input {
+  .photo-input,
+  .msg {
     grid-template-columns: 10% 80% 10%;
   }
 
@@ -175,6 +204,9 @@ label {
 
 @media only screen and (max-width: 445px) {
 
+  header{
+    flex-wrap: wrap;
+  }
   .header-title {
     height: 3em;
   }
