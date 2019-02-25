@@ -141,6 +141,7 @@ function searchPhotos(){
 
 function clearSearchField(){
   searchInput.value = '';
+  hidePhotos();
 }
 
 function displayShowButton() {
