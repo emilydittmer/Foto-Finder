@@ -32,12 +32,12 @@ h1 {
   border-radius: 5px;
   border: solid 2px #C2B2B4;
   height: 35px;
-  width: 22rem;
+  width: 90%;
 }
 
 #search-field {
-  margin: auto 0;
-  padding: 0 0 0 7px;
+  width: 30%;
+  align-self: center;
 }
 
 .search:focus {
@@ -48,8 +48,8 @@ h1 {
   background-color: #C2B2B4;
   color: #fff;
   cursor: pointer;
-  width: 39px;
-  margin-right: 1.5rem;
+  width: 36px;
+  margin-left: -42px;
 }
 
 .photo-input {
@@ -58,6 +58,7 @@ h1 {
   grid-template-columns: 25% 50% 25%;
 }
 
+form,
 .photo-input-form,
 .buttons {
   grid-column-start: 2;
@@ -95,14 +96,19 @@ label {
 #photo-caption {
   color: #C2B2B4;
   font-weight: 400;
-  margin-bottom: .5rem;
+  margin-bottom: 4px;
   font-size: 1.25rem;
 }
 
 #title-input,
 #caption-input {
-  height: 2.5rem;
   resize: none;
+  width: 99.7%;
+  padding: 0;
+}
+
+.file-btn {
+  margin-top: 40px;
 }
 
 .btn {
@@ -151,7 +157,14 @@ label {
   padding-bottom: .5em;
 }
 
-#add-photo,
+#add-photo {
+  font-size: 4em;
+  color: #3E2A35;
+  font-weight: 800;
+  text-align: center;
+  grid-column-start: 2;
+}
+
 #show-more {
   background-color: #5B4447;
   color: #fff;
@@ -162,7 +175,6 @@ label {
   grid-column-start: 2;
   margin-bottom: 2em;
 }
-
 
 .photo-box-title,
 .photo-box-caption {

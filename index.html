@@ -12,29 +12,33 @@
   <body>
     <header>
       <div class="header-title">
-        <h1>FOTO<span><img id="foto-finder-logo" src="images/foto-finder-logo.svg" alt="foto finder logo"/><span>FINDER</h1>
+        <h1>FOTO<img id="foto-finder-logo" src="images/foto-finder-logo.svg" alt="foto finder logo"/>FINDER</h1>
       </div>
-      <form id="search-field">
+      <div id="search-field">
         <input type="search" id="search" class="search" placeholder="Search">
         <button id="search-btn" class="search"><i class="fas fa-search"></i></button>
-      </form>
+      </div>
     </header>
     <section class="photo-input">
-      <h2 class="photo-input-form" id="photo-title">Title</h2>
-      <textarea rows="2" cols="50" class="photo-input-form"id="title-input" class="photo-input" maxlength="50"></textarea>
-      <h2 class="photo-input-form" id="photo-caption">Caption</h2>
-      <textarea rows="2" cols="50" class="photo-input-form" id="caption-input" class="idea-inputs" maxlength="50"></textarea>
-      <input class="choose-file-btn" id="select" type="file" accept="image/*"></input>
-      <label for="select">Choose File</label>
+      <form>
+        <h2 class="photo-input-form" id="photo-title">Title</h2>
+        <textarea rows="2" cols="50" class="photo-input-form"id="title-input" class="photo-input" maxlength="50"></textarea>
+        <h2 class="photo-input-form" id="photo-caption">Caption</h2>
+        <textarea rows="2" cols="50" class="photo-input-form" id="caption-input" class="idea-inputs" maxlength="50"></textarea>
+        <div class="file-btn">
+          <input class="choose-file-btn" id="select" type="file" accept="image/*"></input>
+          <label for="select">Choose File</label>
+        </div>
+      </form>
       <div class="buttons">
-        <button class="btn" id="view-favorite">View <span class="num-favs"></span> Favorites</button>
+        <button class="btn" id="view-favorite">View <span class="num-favs">0</span> Favorites</button>
         <button class="btn" id="add-to-album">Add to Album</button>
       </div>
     </section>
     <section class="photos">
     </section>
     <section class="msg">
-      <button id="add-photo">Please Add a Photo</button>
+      <h4 id="add-photo">Please Add a Photo</h4>
       <button class="show-more-btn" id="show-more">Show More...</button>
     </section>
   </body>

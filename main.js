@@ -25,16 +25,20 @@ function clickHandler(e) {
   if(e.target.id === 'delete') {
     deletePhoto(e);
   }
-  else if(e.target.id === 'favorite') {
-    addFavorite(e);
+  if(e.target.id === 'favorite') {
+    var targetCard = findPhoto(e);
+    e.target.dataset.favorite = !JSON.parse(e.target.dataset.favorite);
+    targetCard.favorite = !targetCard.favorite;
+    targetCard.favorite ? increaseFavCounter() : decreaseFavCounter();
+    targetCard.favorite ? activateFavorite(e.target) : deactivateFavorite(e.target);
+    targetCard.saveToStorage(imagesArr);
   }
 }
-
 //Functions//
 function appendPhotos(array) {
   imagesArr = [];
   array.forEach(function (photo) {
-    var newPhoto = new Photo(photo.title, photo.caption, photo.id, photo.file);
+    var newPhoto = new Photo(photo.title, photo.caption, photo.id, photo.file, photo.favorite);
     imagesArr.push(newPhoto);
     displayPhoto(newPhoto);
   });
@@ -65,11 +69,11 @@ function displayPhoto(photoObj) {
           <h3 class="photo-box-caption" contenteditable="true" maxlength="115">${photoObj.caption}</h4>
         <div class="btn-section">
             <input type="image" src="images/delete.svg" class="card-buttons" id="delete" alt="Delete">
-            <input type="image" src="images/favorite.svg" class="card-buttons" id="favorite" alt="Favorite">
+            <input type="image" src="images/favorite.svg" data-favorite="${photoObj.favorite}" class="card-buttons" id="favorite" alt="Favorite">
         </div>
       </article>`
     photoGallery.insertAdjacentHTML('afterbegin', photoCard);
-    var msgBtn = document.querySelector('#add-photo');
+    var msgBtn = document.querySelector('.add-photo');
     msgBtn.classList.add('add-photo');
     displayShowButton();
 }
@@ -87,41 +91,45 @@ function saveOnReturn(e){
   }
 }
 
-function saveChanges(e){
-  var card = e.target.closest('.photo-box');
-  var cardId = parseInt(card.dataset.id);
-  var photoTitle = card.firstChild.nextSibling;
-  var editTitle = photoTitle.innerText;
-  var photoCaption = card.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
-  var editCaption = photoCaption.innerText;
-  var neededPhoto = findPhoto(cardId);
-  neededPhoto.updatePhoto(editTitle, editCaption);
+function saveChanges(e) {
+  if (e.target.className === 'photo-box-title' || e.target.className === 'photo-box-caption') {
+    var card = e.target.closest('.photo-box');
+    var cardId = parseInt(card.dataset.id);
+    var photoTitle = card.querySelector('.photo-box-title');
+    var editTitle = photoTitle.innerText;
+    var photoCaption = card.querySelector('.photo-box-caption');
+    var editCaption = photoCaption.innerText;
+    var neededPhoto = findPhoto(e);
+    neededPhoto.updatePhoto(editTitle, editCaption);
+  }
 }
 
 function deletePhoto(e) {
   var card = e.target.closest('.photo-box');
-  var cardId = parseInt(card.dataset.id);
   card.remove();
-  var neededPhoto = findPhoto(cardId);
+  var neededPhoto = findPhoto(e);
   neededPhoto.deleteFromStorage();
 }
 
-function findPhoto(cardId) {
+function findPhoto(e) {
+  // if (!e.target.closest('.photo-box')) return;
+  var card = e.target.closest('.photo-box');
+  var cardId = parseInt(card.dataset.id);
   return imagesArr.find(function(photo) {
     return photo.id === cardId;
   });
 }
 
-function addFavorite(e){
-  var card = e.target.closest('.photo-box');
-  var cardId = parseInt(card.dataset.id);
-  photo.favorite = true;
-  console.log(photo);
+// function addFavorite(e){
+//   var card = e.target.closest('.photo-box');
+//   var cardId = parseInt(card.dataset.id);
+//   photo.favorite = true;
+//   console.log(photo.favorite);
   //change favorite image to active(add/remove in CSS);
   //quality counter
   //updates innerText to favorite button
   //
-}
+// }
 
 function removePhotos() {
   photoGallery.innerHTML = '';
@@ -177,3 +185,26 @@ function showPhotos() {
     showBtn.innerText = 'Show less...';
   }
 }
+
+function increaseFavCounter() {
+  var favCounterElement = document.querySelector('.num-favs');
+  var favCount = Number(favCounterElement.innerText);
+  favCount++;
+  favCounterElement.innerText = favCount;
+}
+
+function decreaseFavCounter() {
+  var favCounterElement = document.querySelector('.num-favs');
+  var favCount = Number(favCounterElement.innerText);
+  favCount--;
+  favCounterElement.innerText = favCount;
+}
+
+function activateFavorite(target) {
+  target.setAttribute('src', 'images/favorite-active.svg');
+}
+
+function deactivateFavorite(target) {
+  target.setAttribute ('src', 'images/favorite.svg');
+}
+
