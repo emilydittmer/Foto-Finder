@@ -1,4 +1,3 @@
-//Global Variables//
 var searchInput = document.querySelector('.search');
 var searchBtn = document.querySelector('#search-btn');
 var title = document.querySelector('#title-input');
@@ -28,7 +27,6 @@ function clickHandler(e) {
   }
 }
 
-//Functions//
 function loadPhotos(array) {
   imagesArr = [];
   array.forEach(function (photo) {
