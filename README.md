@@ -13,5 +13,5 @@ My Recreation:
 Turing's responsive composition:
 ![Imgur](https://i.imgur.com/ZcyyaxL.png)
 
-My Recreation:
+My Recreation:<br/>
 ![Imgur](https://i.imgur.com/b1djZbi.png)
