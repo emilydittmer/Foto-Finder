@@ -74,6 +74,7 @@ function displayPhoto(photoObj) {
     var msgPhoto = document.querySelector('#add-photo');
     msgPhoto.classList.add('add-photo');
     displayShowButton();
+    showFavStatus(photoObj);
 }
 
 function clearPhotoFields(){
@@ -197,4 +198,11 @@ function decreaseFavCounter() {
   var favCount = Number(favCounterElement.innerText);
   favCount--;
   favCounterElement.innerText = favCount;
+}
+
+function showFavStatus(photoObj) {
+  if (photoObj.favorite === true) {
+    var matchingCard = document.querySelector(`[data-id="${photoObj.id}"]`);
+    matchingCard.querySelector('.favorite').classList.add('favorite-active');
+  }
 }
