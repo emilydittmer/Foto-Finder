@@ -23,4 +23,8 @@ class Photo {
     this.caption = editCaption;
     this.saveToStorage();
   }
+
+  toggleFav(fav) {
+    this.favorite = fav;
+  }
 }

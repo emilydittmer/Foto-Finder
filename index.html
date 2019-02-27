@@ -20,20 +20,18 @@
       </div>
     </header>
     <section class="photo-input">
-      <form>
+      <form action="">
         <h2 class="photo-input-form" id="photo-title">Title</h2>
-        <textarea rows="2" cols="50" class="photo-input-form"id="title-input" class="photo-input" maxlength="50"></textarea>
+        <input class="photo-input-form" id="title-input" class="photo-input" maxlength="50"></input>
         <h2 class="photo-input-form" id="photo-caption">Caption</h2>
-        <textarea rows="2" cols="50" class="photo-input-form" id="caption-input" class="idea-inputs" maxlength="50"></textarea>
-        <div class="file-btn">
-          <input class="choose-file-btn" id="select" type="file" accept="image/*"></input>
-          <label for="select">Choose File</label>
+        <input class="photo-input-form" id="caption-input" class="photo-input" maxlength="50"></input>
+        <input class="choose-file-btn" id="select" type="file" accept="image/*"></input>
+        <label for="select">Choose File</label>
+        <div class="buttons">
+          <button class="btn" id="view-favorite">View <span class="num-favs">0</span> Favorites</button>
+          <button class="btn" id="add-to-album">Add to Album</button>
         </div>
       </form>
-      <div class="buttons">
-        <button class="btn" id="view-favorite">View <span class="num-favs">0</span> Favorites</button>
-        <button class="btn" id="add-to-album">Add to Album</button>
-      </div>
     </section>
     <section class="photos">
     </section>
