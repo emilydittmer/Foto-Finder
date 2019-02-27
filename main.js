@@ -8,6 +8,7 @@ var imagesArr = JSON.parse(localStorage.getItem('stringedPhotos')) || [];
 var photoInput = document.querySelector('.choose-file-btn');
 var reader = new FileReader();
 var showBtn = document.querySelector('.show-more-btn');
+var favBtn = document.querySelector('#view-favorite');
 
 window.addEventListener('load', loadPhotos(imagesArr));
 addToAlbum.addEventListener('click', loadImg);
@@ -17,6 +18,7 @@ searchInput.addEventListener('input', searchPhotos);
 photoGallery.addEventListener('keydown', saveOnReturn);
 showBtn.addEventListener('click', showPhotos);
 searchBtn.addEventListener('click', searchPhotos);
+favBtn.addEventListener('click', showFavs);
  
 function clickHandler(e) {
   if(e.target.classList.contains('delete')) {
@@ -205,4 +207,15 @@ function showFavStatus(photoObj) {
     var matchingCard = document.querySelector(`[data-id="${photoObj.id}"]`);
     matchingCard.querySelector('.favorite').classList.add('favorite-active');
   }
+}
+
+function showFavs(e){
+  e.preventDefault();
+  removePhotos();
+  var searchFavs = imagesArr.filter(function(photo){
+    return photo.favorite;
+  });
+  searchFavs.forEach(function(element) {
+    displayPhoto(element);
+  });
 }
