@@ -3,17 +3,14 @@ var searchInput = document.querySelector('.search');
 var searchBtn = document.querySelector('#search-btn');
 var title = document.querySelector('#title-input');
 var caption = document.querySelector('#caption-input');
-var favorite = document.querySelector('#view-favorite');
 var addToAlbum = document. querySelector('#add-to-album');
 var photoGallery = document.querySelector('.photos');
 var imagesArr = JSON.parse(localStorage.getItem('stringedPhotos')) || [];
-var create = document.querySelector('button');
 var photoInput = document.querySelector('.choose-file-btn');
 var reader = new FileReader();
 var showBtn = document.querySelector('.show-more-btn');
 
-//Event Listeners//
-window.addEventListener('load', appendPhotos(imagesArr));
+window.addEventListener('load', loadPhotos(imagesArr));
 addToAlbum.addEventListener('click', loadImg);
 photoGallery.addEventListener('focusout', saveChanges);
 photoGallery.addEventListener('click', clickHandler);
@@ -32,13 +29,19 @@ function clickHandler(e) {
 }
 
 //Functions//
-function appendPhotos(array) {
+function loadPhotos(array) {
   imagesArr = [];
   array.forEach(function (photo) {
     var newPhoto = new Photo(photo.title, photo.caption, photo.id, photo.file, photo.favorite);
     imagesArr.push(newPhoto);
     displayPhoto(newPhoto);
   });
+  var favorites = document.querySelectorAll('.favorite');
+    for (var i = 0; i < favorites.length; i++) {
+      if (JSON.parse(favorites[i].dataset.favorite)) { 
+      increaseFavCounter();
+      }
+    }
   hidePhotos();
 }
 
@@ -129,11 +132,6 @@ function addFavorite(e) {
     matchingObj.saveToStorage();
 }
 
-//function display fav status on page load
-//WITHIN your append html function ->
-  //loop through, find photos where favorited === true ->
-  //find corresponding DOM card and ADD the pink fav icon class to it
-
 function removePhotos() {
   photoGallery.innerHTML = '';
 } 
@@ -194,7 +192,6 @@ function increaseFavCounter() {
   var favCount = Number(favCounterElement.innerText);
   favCount++;
   favCounterElement.innerText = favCount;
-  // favCount.saveToStorage();
 }
 
 function decreaseFavCounter() {
@@ -202,6 +199,4 @@ function decreaseFavCounter() {
   var favCount = Number(favCounterElement.innerText);
   favCount--;
   favCounterElement.innerText = favCount;
-  // favCount.saveToStorage();
 }
-
